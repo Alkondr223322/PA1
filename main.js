@@ -96,61 +96,42 @@ function draw() {
 function CreateSurfaceData()
 {
     let vertexList = [];
-    let indexList = [];
+    let indexList = {u: [], v:[]};
     let pointer = 0;
     let r1 = 1
     let r2 = 2
     let h = 2
 
     for (let i=0; i<360; i+=5) {
-        for(let j = h; j > 0; j-=h * 0.1){
-            vertexList.push( r1 * Math.sin(deg2rad(i)), j, r1 * Math.cos(deg2rad(i)) );
-            indexList.push(pointer)
-            
-            if(i+5 < 360){
-                indexList.push(pointer+42)
-            }else{
-                indexList.push(pointer%42)
-            }
-            indexList.push(pointer)
-            
-            pointer++; 
-            //if(pointer%2==1 )indexList.push(pointer)
+        vertexList.push( r1 * Math.sin(deg2rad(i)), 0, r1 * Math.cos(deg2rad(i)) );
+        indexList.u.push(pointer)
+        pointer++; 
+        vertexList.push( r1 * Math.sin(deg2rad(i)), h, r1 * Math.cos(deg2rad(i)) );
+        indexList.u.push(pointer)
+        indexList.u.push(pointer)
+        pointer++; 
+        vertexList.push( r2 * Math.sin(deg2rad(i)), h, r2 * Math.cos(deg2rad(i)) );
+        indexList.u.push(pointer)
+        indexList.u.push(pointer)
+        pointer++; 
+        vertexList.push( r2 * Math.sin(deg2rad(i)), 0, r2 * Math.cos(deg2rad(i)) );
+        indexList.u.push(pointer)
+        indexList.u.push(pointer)
+        pointer++; 
+        indexList.u.push(pointer-4)
 
-        }
-        for(let k = r1; k <= r2; k += r1 * 0.1){
-            vertexList.push( k * Math.sin(deg2rad(i)), 0, k * Math.cos(deg2rad(i)) );
-            indexList.push(pointer)
-            if(i+5 < 360){
-                indexList.push(pointer+42)
+        for(let j = 0; j < 4; j++){
+            if(i + 5 < 360){
+                indexList.v.push(pointer+j-4)
+                indexList.v.push(pointer+j)
             }else{
-                indexList.push(pointer%42)
+                indexList.v.push(pointer-4+j)
+                indexList.v.push(j)
             }
-            indexList.push(pointer)
-            pointer++;
         }
-        for(let j = 0; j <= h; j+=h * 0.1){
-            vertexList.push( r2 * Math.sin(deg2rad(i)), j, r2 * Math.cos(deg2rad(i)) );
-            indexList.push(pointer)
-            if(i+5 < 360){
-                indexList.push(pointer+42)
-            }else{
-                indexList.push(pointer%42)
-            }
-            indexList.push(pointer)
-            pointer++;
-        }
-        for(let k = r2; k > r1; k -= r1 * 0.1){
-            vertexList.push( k * Math.sin(deg2rad(i)), h, k * Math.cos(deg2rad(i)) );
-            indexList.push(pointer)
-            if(i+5 < 360){
-                indexList.push(pointer+42)
-            }else{
-                indexList.push(pointer%42)
-            }
-            indexList.push(pointer)
-            pointer++;
-        }
+
+
+       
         // vertexList.push( Math.sin(deg2rad(i)), 1, Math.cos(deg2rad(i)) );
         // vertexList.push( Math.sin(deg2rad(i)), 0, Math.cos(deg2rad(i)) );
 
