@@ -159,81 +159,82 @@ function CreateSurfaceData(data)
         //   | \ |
         //   o - o
         // v3     v1
-        //OUTER WALLS
-        if (i > 0)
-        {
-            let v1ind = v0ind - iterCount*2;
-            let v2ind = v0ind + 2
-            let v3ind = v0ind - iterCount*2 +2
-            let trian = new Triangle(v0ind, v3ind, v2ind);
-            let trianInd = triangles.length;
+       // CEILING
+       v0ind+=2
+       if (i > 0 && h == hMax)
+           {
+              
+               let v1ind = v0ind - 2;
+               let v2ind = v0ind - 1
+               let v3ind = v0ind - 3
+   
+               let trian = new Triangle(v0ind, v3ind, v2ind);
+               let trianInd = triangles.length;
+   
+               triangles.push( trian );
+               vertices[v0ind].triangles.push(trianInd);
+               vertices[v1ind].triangles.push(trianInd);
+               vertices[v3ind].triangles.push(trianInd);
+   
+               let trian2 = new Triangle(v3ind, v0ind, v1ind);
+               let trianInd2 = triangles.length;
+   
+               triangles.push( trian2 );
+               vertices[v0ind].triangles.push(trianInd2);
+               vertices[v3ind].triangles.push(trianInd2);
+               vertices[v1ind].triangles.push(trianInd2);
+   
+           }
+       //OUTER WALLS
+       v0ind-=2
+       if (i > 0)
+       {
+           let v1ind = v0ind - iterCount*2;
+           let v2ind = v0ind + 2
+           let v3ind = v0ind - iterCount*2 +2
+           let trian = new Triangle(v0ind, v3ind, v2ind);
+           let trianInd = triangles.length;
 
-            triangles.push( trian );
-            vertices[v0ind].triangles.push(trianInd);
-            vertices[v1ind].triangles.push(trianInd);
-            vertices[v3ind].triangles.push(trianInd);
+           triangles.push( trian );
+           vertices[v0ind].triangles.push(trianInd);
+           vertices[v1ind].triangles.push(trianInd);
+           vertices[v3ind].triangles.push(trianInd);
 
-            let trian2 = new Triangle(v3ind, v0ind, v1ind);
-            let trianInd2 = triangles.length;
+           let trian2 = new Triangle(v3ind, v0ind, v1ind);
+           let trianInd2 = triangles.length;
 
-            triangles.push( trian2 );
-            vertices[v0ind].triangles.push(trianInd2);
-            vertices[v3ind].triangles.push(trianInd2);
-            vertices[v1ind].triangles.push(trianInd2);
+           triangles.push( trian2 );
+           vertices[v0ind].triangles.push(trianInd2);
+           vertices[v3ind].triangles.push(trianInd2);
+           vertices[v1ind].triangles.push(trianInd2);
 
-        }
-        // INNER WALLS
-        v0ind--
-        if (i > 0) 
-            {
-                
-                let v1ind = v0ind - iterCount*2;
-                let v2ind = v0ind + 2
-                let v3ind = v0ind - iterCount*2 +2
-    
-                let trian = new Triangle(v0ind, v3ind, v2ind);
-                let trianInd = triangles.length;
-    
-                triangles.push( trian );
-                vertices[v0ind].triangles.push(trianInd);
-                vertices[v1ind].triangles.push(trianInd);
-                vertices[v3ind].triangles.push(trianInd);
-    
-                let trian2 = new Triangle(v3ind, v0ind, v1ind);
-                let trianInd2 = triangles.length;
-    
-                triangles.push( trian2 );
-                vertices[v0ind].triangles.push(trianInd2);
-                vertices[v3ind].triangles.push(trianInd2);
-                vertices[v1ind].triangles.push(trianInd2);
-    
-            }
-        // CEILING
-        v0ind+=3
-        if (i > 0 && h == hMax)
-            {
+       }
+       // INNER WALLS
+       v0ind--
+       if (i > 0) 
+           {
                
-                let v1ind = v0ind - 2;
-                let v2ind = v0ind - 1
-                let v3ind = v0ind - 3
-    
-                let trian = new Triangle(v0ind, v3ind, v2ind);
-                let trianInd = triangles.length;
-    
-                triangles.push( trian );
-                vertices[v0ind].triangles.push(trianInd);
-                vertices[v1ind].triangles.push(trianInd);
-                vertices[v3ind].triangles.push(trianInd);
-    
-                let trian2 = new Triangle(v3ind, v0ind, v1ind);
-                let trianInd2 = triangles.length;
-    
-                triangles.push( trian2 );
-                vertices[v0ind].triangles.push(trianInd2);
-                vertices[v3ind].triangles.push(trianInd2);
-                vertices[v1ind].triangles.push(trianInd2);
-    
-            }
+               let v1ind = v0ind - iterCount*2;
+               let v2ind = v0ind + 2
+               let v3ind = v0ind - iterCount*2 +2
+   
+               let trian = new Triangle(v0ind, v3ind, v2ind);
+               let trianInd = triangles.length;
+   
+               triangles.push( trian );
+               vertices[v0ind].triangles.push(trianInd);
+               vertices[v1ind].triangles.push(trianInd);
+               vertices[v3ind].triangles.push(trianInd);
+   
+               let trian2 = new Triangle(v3ind, v0ind, v1ind);
+               let trianInd2 = triangles.length;
+   
+               triangles.push( trian2 );
+               vertices[v0ind].triangles.push(trianInd2);
+               vertices[v3ind].triangles.push(trianInd2);
+               vertices[v1ind].triangles.push(trianInd2);
+   
+           }
        
     }
     }
