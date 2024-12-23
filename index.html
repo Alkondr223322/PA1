@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>CGW</title>
+<style>
+    body {
+        background-color: #EEEEEE;
+    }
+</style>
+
+<script src="./Utils/trackball-rotator.js"></script>
+<script src="./Utils/m4.js"></script>
+<script src="./shader.gpu"></script>
+<script src="./Model.js"></script>
+<script src="./main.js"></script>
+
+</head>
+<body onload="init()">
+
+<h2>A surface of conjugation of two coaxial cylinders of different diameters with "Trackball" Mouse Rotation</h2>
+
+<p id="message">Drag your mouse on the model to rotate it.<br>
+(On a touch screen, you can use your finger.)</p>
+<div>
+    <input type="range" id="stepRange" name="stepRange" min="15" max="60" value="15" step="15" oninput="updateRangeValue(this.value)"/>
+    <label for="stepRange">Granularity1 : <span id="rangeValue">15</span></label>
+
+
+<script>
+    function updateRangeValue(value) {
+        document.getElementById("rangeValue").textContent = value;
+        animate();
+    }
+</script>
+  </div>
+  <div>
+    <input type="range" id="step2Range" name="step2Range" min="1" max="5" value="1" oninput="updateRange2Value(this.value)"/>
+    <label for="step2Range">Granularity2 : <span id="range2Value">1</span></label>
+
+
+<script>
+    function updateRange2Value(value) {
+        document.getElementById("range2Value").textContent = value;
+        animate();
+
+    }
+</script>
+  </div>
+<!-- // light x -->
+  <div>
+    <input type="range" id="lxRange" name="lxRange" min="-100" max="100" value="1" oninput="updatelxRange(this.value)"/>
+    <label for="lxRange">Light X : <span id="lxrangeValue">1</span></label>
+
+
+<script>
+    function updatelxRange(value) {
+        document.getElementById("lxrangeValue").textContent = value;
+        animate();
+    }
+</script>
+  </div>
+  <!-- // light y -->
+  <div>
+    <input type="range" id="lyRange" name="lyRange" min="-100" max="100" value="1" oninput="updatelyRange(this.value)"/>
+    <label for="lyRange">Light Y : <span id="lyrangeValue">1</span></label>
+
+
+<script>
+    function updatelyRange(value) {
+        document.getElementById("lyrangeValue").textContent = value;
+        animate();
+    }
+</script>
+  </div>
+  <!-- // light z -->
+  <div>
+    <input type="range" id="lzRange" name="lzRange" min="-100" max="100" value="1" oninput="updatelzRange(this.value)"/>
+    <label for="lzRange">Light Z : <span id="lzrangeValue">1</span></label>
+
+
+<script>
+    function updatelzRange(value) {
+        document.getElementById("lzrangeValue").textContent = value;
+        animate();
+    }
+</script>
+  </div>
+
+<!-- // texture center  -->
+<div>
+
+  <p>Center U : <span id="CUpValue">0.00</span></p>
+  <p>Center V : <span id="CVpValue">0.00</span></p>
+  </div>
+
+<!-- // rotation angle -->
+<div>
+    <input type="range" id="RARange" name="RARange" min="0" max="360" value="0" oninput="updateRARange(this.value)"/>
+    <label for="RARange">Rotation angle : <span id="RArangeValue">0</span></label>
+  
+  
+  <script>
+    function updateRARange(value) {
+        document.getElementById("RArangeValue").textContent = value;
+        animate();
+    }
+  </script>
+</div>
+
+
+
+<div id="canvas-holder">
+   <canvas width="600" height="600" id="webglcanvas" style="background-color:red"></canvas>
+</div>
+
+
+</body></html>
